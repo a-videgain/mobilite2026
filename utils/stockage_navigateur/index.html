@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+<script>
+// Composant Streamlit minimal (sans dépendance) : copie automatique du travail dans le
+// localStorage du navigateur et relecture de la copie existante.
+// Protocole : https://docs.streamlit.io/develop/concepts/custom-components
+(function () {
+  var dejaEnvoye = false;
+
+  function envoyer(type, donnees) {
+    var msg = { isStreamlitMessage: true, type: type };
+    for (var k in donnees) { msg[k] = donnees[k]; }
+    window.parent.postMessage(msg, "*");
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data || event.data.type !== "streamlit:render") { return; }
+    var args = event.data.args || {};
+    var cle = args.storage_key || "mpb2050_session";
+    var contenu = args.payload || "";
+    var ok = false, ancien = null;
+
+    try {
+      ancien = window.localStorage.getItem(cle);
+      if (contenu && contenu !== ancien) {
+        window.localStorage.setItem(cle, contenu);
+      }
+      ok = true;
+    } catch (e) {
+      ok = false;
+    }
+
+    // Une seule réponse à Python (copie trouvée au chargement), pour éviter des relances inutiles.
+    if (!dejaEnvoye) {
+      dejaEnvoye = true;
+      envoyer("streamlit:setComponentValue", {
+        value: { ok: ok, stored: ancien },
+        dataType: "json"
+      });
+    }
+  });
+
+  envoyer("streamlit:componentReady", { apiVersion: 1 });
+  envoyer("streamlit:setFrameHeight", { height: 0 });
+})();
+</script>
+</body>
+</html>
