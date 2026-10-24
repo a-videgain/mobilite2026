@@ -1,0 +1,6 @@
+runtime: python311
+
+env_variables:
+  PORT: "8080"
+
+entrypoint: streamlit run Initialisation.py --server.port=$PORT --server.address=0.0.0.0
