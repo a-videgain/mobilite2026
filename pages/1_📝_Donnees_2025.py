@@ -98,7 +98,6 @@ with st.expander("**Sources de données - À lire attentivement**", expanded=Fal
         - Voiture : choisir « Moyenne » et « Diesel » (voiture thermique et voiture électrique de taille « Moyenne »).
         - Train : choisir l'option « TER ».
         - Avion : choisir « Avion trajet court ».
-        - Les valeurs sont affichées en gCO₂e par km : les saisir telles quelles.
     
     """)
 
