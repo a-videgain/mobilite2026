@@ -38,7 +38,7 @@ st.markdown("""
 
 La Stratégie nationale bas-carbone (SNBC 3) vise une décarbonation complète du secteur des transports en 2050 ([page SNBC Transports](https://www.ecologie.gouv.fr/strategie-nationale-bas-carbone/transports)).
 Cet exercice s'en inspire : il retient une réduction de **70 %** des émissions de la mobilité des habitants entre 2025 et 2050, calculées sur le **cycle de vie** (ACV).
-Ce repère de 70 % est un choix pédagogique de l'exercice, il ne figure pas dans la SNBC.
+Ce repère de 70 % est un choix pédagogique de l'exercice.
 
 Vous êtes des **consultant.e.s en mobilités**.  
 Votre client : la Communauté d'Agglomération Pays Basque, en partenariat avec le Syndicat des Mobilités Pays Basque-Adour.  
